@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <import resource="database-config.xml"/>
+
+    <context:component-scan base-package="ru.test.vaadin.dao"/>
+    <context:component-scan base-package="ru.test.vaadin.entity"/>
+    <context:component-scan base-package="ru.test.vaadin.ui"/>
+
+
+    <bean name="application" class="ru.test.vaadin.ui.UsersApp"/>
+
+    <bean id="userDao" class="ru.test.vaadin.dao.UserDaoImpl">
+        <property name="template" ref="hibernateTemplate"/>
+    </bean>
+
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+</beans>
